@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'frontend/code_files/css/login.css' %}">
+    <title>Sign-up</title>
+</head>
+<body>
+    <form action="" method="post" id="form" class="signup-form">
+        {% csrf_token %}
+        <p id="note" class="blue">Username <span class="red">Must</span> Include a number</p>
+        <!-- <label for="username">Enter Username</label> -->
+        <input type="text" name="password" placeholder="Enter username" id="username"/>
+        <input type="submit" value="Submit">
+    </form>
+        <p class="alt">
+            Already have an account? <a href="{% url 'login' %}">Login</a>
+        </p>
+</body>
+<script>
+      const userForm = document.querySelector("#form");
+        const note = userForm.querySelector("#note");
+        const userInput = document.querySelector("#username");
+        userForm.addEventListener("submit", checkValue);
+
+        function checkValue(event){
+            let index = -1;
+            console.log(userInput.value)
+            if(!userInput.value){
+                event.preventDefault();
+                warn()
+            }
+            else{
+                for(let subString of userInput.value){
+                index++;
+                if(!Number.isNaN(parseInt(subString))){
+                    break;
+                }
+                else if(Number.isNaN(parseInt(subString)) && userInput.value.indexOf(subString, index) == userInput.value.length - 1){
+            event.preventDefault();
+                    warn()
+                }
+            }
+            }
+            // debugger
+          
+        }
+        function warn(){
+                userInput.style.color= "red";
+                note.style.color= "red";
+        }
+</script>
+</html>

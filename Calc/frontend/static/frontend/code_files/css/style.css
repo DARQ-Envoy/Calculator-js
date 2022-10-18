@@ -1,0 +1,456 @@
+.time {
+  background-color: green;
+}
+
+.theme-1 {
+  background-color: black;
+}
+
+@media screen and (min-width: 600px) {
+  .theme-1 {
+    background-color: #3a4764;
+  }
+}
+
+.theme-1 main {
+  background-color: #3a4764;
+  color: white;
+}
+
+.theme-1 main #range::-webkit-slider-thumb {
+  background-color: #d03f2f;
+}
+
+.theme-1 main #range::-webkit-slider-runnable-track, .theme-1 main #input-buttons {
+  background-color: #232c43;
+}
+
+.theme-1 main #display-input {
+  color: white;
+  background-color: #182034;
+}
+
+.theme-1 main #input-buttons button {
+  color: #444b5a;
+  box-shadow: 0px -5px #b4a597 inset;
+  background-color: #eae3dc;
+}
+
+.theme-1 main #input-buttons .blue-btn, .theme-1 main #input-buttons .bottom-btn {
+  background-color: #637097;
+  box-shadow: 0px -5px #404e72 inset;
+}
+
+.theme-1 main #input-buttons .res-btn {
+  background-color: #d03f2f;
+  box-shadow: 0px -5px #93261a inset;
+  color: white;
+}
+
+.theme-1 #his-display, .theme-1 .his-list li button, .his-list li .theme-1 button, .theme-1 .close-history {
+  color: white;
+}
+
+.theme-1 .main-history {
+  background-color: #eae3dc;
+  border-style: solid;
+  border-color: #444b5a;
+}
+
+.theme-1 .close-history span {
+  background-color: #637097;
+}
+
+.theme-1 .his-list small, .theme-1 .his-list b {
+  color: #444b5a;
+}
+
+.theme-1 .his-list li button {
+  color: #637097;
+}
+
+.theme-2 {
+  background-color: black;
+}
+
+@media screen and (min-width: 600px) {
+  .theme-2 {
+    background-color: #e6e6e6;
+  }
+}
+
+.theme-2 main {
+  background-color: #e6e6e6;
+  color: #35352c;
+}
+
+.theme-2 main #range::-webkit-slider-thumb {
+  background-color: #ca5502;
+}
+
+.theme-2 main #range::-webkit-slider-runnable-track, .theme-2 main #input-buttons {
+  background-color: #d1cccc;
+}
+
+.theme-2 main #display-input {
+  color: #35352c;
+  background-color: #ededed;
+}
+
+.theme-2 main #input-buttons button {
+  color: #35352c;
+  box-shadow: 0px -5px #a69d91 inset;
+  background-color: #e5e4e1;
+}
+
+.theme-2 main #input-buttons .blue-btn, .theme-2 main #input-buttons .bottom-btn {
+  background-color: #377f86;
+  box-shadow: 0px -5px #1b5f65 inset;
+}
+
+.theme-2 main #input-buttons .res-btn {
+  background-color: #ca5502;
+  box-shadow: 0px -5px #893901 inset;
+  color: white;
+}
+
+.theme-2 #his-display, .theme-2 .his-list li button, .his-list li .theme-2 button, .theme-2 .close-history {
+  color: #35352c;
+}
+
+.theme-2 .main-history {
+  background-color: #e5e4e1;
+  border-style: solid;
+  border-color: #35352c;
+}
+
+.theme-2 .close-history span {
+  background-color: #377f86;
+}
+
+.theme-2 .his-list small, .theme-2 .his-list b {
+  color: #35352c;
+}
+
+.theme-2 .his-list li button {
+  color: #377f86;
+}
+
+.theme-3 {
+  background-color: black;
+}
+
+@media screen and (min-width: 600px) {
+  .theme-3 {
+    background-color: #160628;
+  }
+}
+
+.theme-3 main {
+  background-color: #160628;
+  color: #ffe53d;
+}
+
+.theme-3 main #range::-webkit-slider-thumb {
+  background-color: #00e0d1;
+}
+
+.theme-3 main #range::-webkit-slider-runnable-track, .theme-3 main #input-buttons {
+  background-color: #1d0934;
+}
+
+.theme-3 main #display-input {
+  color: #ffe53d;
+  background-color: #1d0934;
+}
+
+.theme-3 main #input-buttons button {
+  color: #ffe53d;
+  box-shadow: 0px -5px #871c9c inset;
+  background-color: #341c4f;
+}
+
+.theme-3 main #input-buttons .blue-btn, .theme-3 main #input-buttons .bottom-btn {
+  background-color: #58077d;
+  box-shadow: 0px -5px #bc15f4 inset;
+}
+
+.theme-3 main #input-buttons .res-btn {
+  background-color: #00e0d1;
+  box-shadow: 0px -5px #6cf9f2 inset;
+  color: #1b2428;
+}
+
+.theme-3 #his-display, .theme-3 .his-list li button, .his-list li .theme-3 button, .theme-3 .close-history {
+  color: #ffe53d;
+}
+
+.theme-3 .main-history {
+  background-color: #341c4f;
+  border-style: solid;
+  border-color: #ffe53d;
+}
+
+.theme-3 .close-history span {
+  background-color: #9609d7;
+}
+
+.theme-3 .his-list small, .theme-3 .his-list b {
+  color: #ffe53d;
+}
+
+.theme-3 .his-list li button {
+  color: #9609d7;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+main {
+  margin: 10px 0;
+  width: 100%;
+  border-radius: 10px;
+  padding: 20px 10px;
+  transition: all 1s ease;
+}
+
+#head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 10px;
+}
+
+#head h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+#head h6 {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+}
+
+#head .main-themes {
+  width: 68px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+#head .main-themes #range {
+  width: 70px;
+  appearance: none;
+  border-radius: 3px;
+  background-color: transparent;
+  height: 24px;
+}
+
+#head .main-themes #range::-webkit-slider-thumb {
+  appearance: none;
+  height: 13.5px;
+  width: 13px;
+  border-radius: 50%;
+}
+
+#head .main-themes #range::-webkit-slider-runnable-track {
+  appearance: none;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 3.8px 5px;
+}
+
+#head .main-themes .values {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin-bottom: 5px;
+}
+
+#head .theme {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 30px;
+}
+
+.val-cont {
+  margin: 10px 0 20px;
+  width: 100%;
+}
+
+#display-input {
+  padding: 20px;
+  font-size: 2.4rem;
+  font-weight: 700;
+  text-align: right;
+  border-radius: 20px;
+  width: 100%;
+  border: none;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#display-input:focus {
+  outline: none;
+}
+
+#input-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 25px 20px;
+  border-radius: 10px;
+  user-select: none;
+  grid-template-rows: repeat(4, 60px) 80px;
+}
+
+#input-buttons button {
+  font-size: 2rem;
+  padding: 10px;
+  border-radius: 7px;
+  border: none;
+  transition: box-shadow 90ms linear;
+  font-weight: bold;
+}
+
+#input-buttons #reset, #input-buttons #result {
+  grid-column: span 2;
+}
+
+#input-buttons .blue-btn, #input-buttons #reset {
+  color: white !important;
+}
+
+#input-buttons #reset, #input-buttons #result, #input-buttons .blue-btn {
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: 1.8px;
+}
+
+#input-buttons button:active {
+  box-shadow: none !important;
+}
+
+#history {
+  position: relative;
+}
+
+#his-display, .his-list li button, .close-history {
+  padding: 4px;
+  display: block;
+  margin-left: auto;
+  font-size: 1.4rem;
+  font-weight: bolder;
+  font-family: serif;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.main-history {
+  padding: 0px;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  translate: -50% 0;
+  width: 0;
+  height: 0px;
+  overflow: hidden;
+  border-width: 0px;
+  transition: height 2s linear, width 500ms ease, padding 500ms ease;
+}
+
+.width-his {
+  padding: 20px;
+  width: 100%;
+  border-width: 4px;
+}
+
+.open-main-history {
+  height: 480px;
+}
+
+.his-list {
+  margin: 30px 0 10px;
+  height: 85%;
+  padding: 0 20px;
+  overflow-y: scroll;
+}
+
+.his-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  list-style: none;
+  border: 1px dotted #c0c0c0;
+}
+
+.his-list li small, .his-list li b, .his-list li button {
+  display: block;
+  padding: 5px;
+}
+
+.his-list li b {
+  text-align: center;
+}
+
+.his-list li button {
+  font-size: 1rem;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin: 0;
+}
+
+.his-list::-webkit-scrollbar {
+  display: none;
+}
+
+.close-history {
+  padding: 4px;
+}
+
+.close-history span {
+  display: block;
+  height: 2px;
+  width: 30px;
+}
+
+.close-history span:first-child {
+  rotate: 45deg;
+  translate: 0 50%;
+}
+
+.close-history span:last-child {
+  rotate: 135deg;
+  translate: 0 -50%;
+}
+
+@media screen and (min-width: 600px) {
+  main {
+    max-width: 430px;
+    margin: 0 auto;
+  }
+  .his-list li {
+    display: block;
+  }
+  .his-list li button {
+    margin-left: auto;
+  }
+}

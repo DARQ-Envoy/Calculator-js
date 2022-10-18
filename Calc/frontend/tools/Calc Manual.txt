@@ -1,0 +1,5 @@
+I will run all conditionals to ensure the user's input does not violate my rules.
+my app is simply divided into the following:
+The first engine takes in user data and ensures the data is valid before adding or storing it.
+The second engine takes the compiled data and renders it to the user according to its program.
+The third engine takes the data from the first engine and processes it to produce the result when the user activates it.

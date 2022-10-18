@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static%}
+    <title>Arithmetic Calculator</title>
+    <link rel="stylesheet" href="{% static 'frontend/code_files/css/style.css' %}">
+    <script src="{% static 'frontend/code_files/js/app.js'%}" defer></script>
+</head>
+<body>
+    <main>
+        <h1 style="text-align:center;" id="user">{{username}}</h1>
+        <div id="head">
+            <h2>Calc</h2> 
+            <div class="theme">
+                <h6>THEME</h6>
+                <div class="main-themes">
+                    <div class="values">
+                        <span>1</span>
+                        <span>2</span>
+                        <span>3</span>
+                    </div>
+                    <input type="range" min="1" max="3" step="1" value="1" id="range"/>
+                </div>
+            </div>
+        </div>
+        <div id="history">
+            <button id="his-display">History</button>
+            <div class="main-history" id="his-main">
+                <button class="close-history"><span></span><span></span></button>
+                <ul class="his-list">
+                    <!-- <li>
+                        <small>1-10-22</small>
+                        <b id="equ-0">320+20</b>
+                        <button>Get Result</button>
+                    </li>
+                    <li>
+                        <small>1-10-22</small>
+                        <b id="equ-1">320+120</b>
+                        <button>Get Result</button>
+                    </li>
+                    <li>
+                        <small>1-10-22</small>
+                        <b id="equ-2">320+500</b>
+                        <button>Get Result</button>
+                    </li>
+                    <li>
+                        <small>1-10-22</small>
+                        <b id="equ-3">320+520</b>
+                        <button>Get Result</button>
+                    </li>
+                    <li>
+                        <small>1-10-22</small>
+                        <b id="equ-4">320+924</b>
+                        <button>Get Result</button>
+                    </li>
+                    <li>
+                        <small>1-10-22</small>
+                        <b id="equ-5">450+220</b>
+                        <button>Get Result</button>
+                    </li>
+                    <li>
+                        <small>1-10-22</small>
+                        <b id="equ-6">996+220</b>
+                        <button>Get Result</button>
+                    </li> -->
+                </ul>
+                <button id="clear-History">clear</button>
+            </div>
+        </div>
+        <div id="values" class="val-cont"><input type="text"  id="display-input" readonly aria-readonly="true" ></div>
+        <div id="input-buttons">
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="blue-btn" id="delete">DEL</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>+</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>-</button>
+            <button>.</button>
+            <button>0</button>
+            <button>/</button>
+            <button>x</button>
+            <button class="bottom-btn" id="reset">RESET</button>
+            <button class="res-btn" id="result">=</button>
+        </div>
+    </main>
+</body>
+</html>

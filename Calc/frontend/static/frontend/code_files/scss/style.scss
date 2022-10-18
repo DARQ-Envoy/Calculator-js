@@ -1,0 +1,332 @@
+@function set-button-bg($bg, $value){
+    @if(lightness($bg) < 30) {
+        @return  $value;
+    }
+    @else{
+        @return $bg;
+    }
+}
+
+@mixin themes( $background, $color, $thumb-bg, $track-bg, $output-bg, $input-color, $properties, $all-btn-bg, $blue-bg, $blue-prop, $res-shadow, $res-color){
+    &{
+        background-color: black;
+    }
+    
+    @media screen and (min-width: 600px) {
+            background-color: $background;
+    }
+ 
+    main{
+        background-color: $background;
+        color: $color;
+        #range::-webkit-slider-thumb{
+            background-color: $thumb-bg ;
+        }
+        #range::-webkit-slider-runnable-track, #input-buttons{
+            background-color: $track-bg;
+        }
+        #display-input{
+            color: $color;
+            background-color: $output-bg;
+        }
+        #input-buttons{
+            button{
+                color: $input-color;
+                box-shadow: $properties;
+                background-color: $all-btn-bg;
+            }
+            .blue-btn, .bottom-btn{
+                background-color: $blue-bg;
+                box-shadow: $blue-prop;
+            }
+            .res-btn{
+                background-color: $thumb-bg;
+                box-shadow: $res-shadow;
+                color: $res-color;
+            }
+    
+        }
+    }
+    #his-display{
+        color: $color;
+    }
+    .main-history{
+        background-color: $all-btn-bg;
+        // border: 4px solid set-button-bg($input-color, #1e66ff);
+        border-style: solid; 
+        border-color: $input-color;
+    }
+    .close-history{
+        span{
+            background-color: set-button-bg($blue-bg, #9609d7);
+        }
+    }
+    .his-list{
+        small, b{
+            color: $input-color;
+        }
+        li{
+            button{
+                color: set-button-bg($blue-bg, #9609d7);
+            }
+        }
+   
+    }
+}
+.time{
+    background-color: green;
+}
+.theme-1{
+    @include themes(hsl(222, 26%, 31%), white, hsl(6, 63%, 50%), hsl(223, 31%, 20%),hsl(224, 36%, 15%),hsl(221, 14%, 31%), 
+     0px -5px hsl(28, 16%, 65%) inset, hsl(30, 25%, 89%), hsl(225, 21%, 49%), 0px -5px  hsl(224, 28%, 35%) inset, 0px -5px hsl(6, 70%, 34%) inset, white )
+}
+
+.theme-2{
+    @include themes(hsl(0, 0%, 90%), hsl(60, 10%, 19%), hsl(25, 98%, 40%),  hsl(0, 5%, 81%),hsl(0, 0%, 93%),hsl(60, 10%, 19%), 
+     0px -5px hsl(35, 11%, 61%)inset, hsl(45, 7%, 89%), hsl(185, 42%, 37%), 0px -5px   hsl(185, 58%, 25%) inset, 0px -5px hsl(25, 99%, 27%) inset, hsl(0, 0, 100%) )
+}
+
+.theme-3{
+    @include themes( hsl(268, 75%, 9%),hsl(52, 100%, 62%), hsl(176, 100%, 44%),hsl(268, 71%, 12%),hsl(268, 71%, 12%),hsl(52, 100%, 62%), 
+     0px -5px  hsl(290, 70%, 36%) inset, hsl(268, 47%, 21%),  hsl(281, 89%, 26%), 0px -5px hsl(285, 91%, 52%) inset, 0px -5px hsl(177, 92%, 70%) inset,  hsl(198, 20%, 13%) )
+}
+
+
+
+
+
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: sans-serif;
+    // background-color: black;
+}
+main{
+    margin: 10px 0;
+    width: 100%;
+    border-radius: 10px;
+    padding: 20px 10px;
+    transition: all 1s ease;
+}
+
+#head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 10px;
+
+    h2{
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    h6{
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 1.8px;
+    }
+    .main-themes{
+        width: 68px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        #range{
+            width: 70px;
+            appearance: none;
+            border-radius: 3px;
+            background-color: transparent;
+            height: 24px;
+    &::-webkit-slider-thumb{
+                appearance: none;
+                height: 13.5px;
+                width: 13px;
+                border-radius: 50%;
+            }  
+            &::-webkit-slider-runnable-track{
+                appearance: none;
+                border-radius: 10px;
+                width: 100%;
+                height: 100%;
+            padding: 3.8px 5px;
+
+            }
+               
+        }
+        
+  .values{
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin-bottom: 5px;
+    }
+}
+.theme{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 30px;
+}
+
+}
+.val-cont{
+    margin: 10px 0 20px;
+    width: 100%;
+}
+#display-input{
+    padding: 20px;
+    font-size: 2.4rem;
+    font-weight: 700;
+    text-align: right;
+    border-radius: 20px;
+    width: 100%;
+    border: none;
+    font-family:   'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    &:focus{
+        outline: none;
+    }
+}
+#input-buttons{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 25px 20px;
+    border-radius: 10px;
+    user-select: none;
+    grid-template-rows: repeat(4,60px) 80px;
+    button{
+        font-size: 2rem;
+        padding: 10px;
+        border-radius: 7px;
+        border: none;
+        transition: box-shadow 90ms linear;
+        font-weight: bold;
+    }
+ #reset, #result{
+        grid-column: span 2;
+    }
+    .blue-btn, #reset{
+        color: white !important;
+    }
+    #reset, #result, .blue-btn{
+        font-weight: 500;
+        font-size: 1.1rem;
+        letter-spacing: 1.8px;
+    }
+    button:active{
+        box-shadow: none !important;
+    }
+}
+
+#history{
+    position: relative;
+}
+#his-display{
+    padding: 4px;
+    display: block;
+    margin-left: auto;
+    font-size: 1.4rem;
+    font-weight: bolder;
+    font-family: serif;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.main-history{
+    padding: 0px;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    translate: -50% 0;
+    width: 0;
+    height: 0px;
+    overflow: hidden;
+    border-width: 0px;
+    transition:  height 2s linear, width 500ms ease, padding 500ms ease ;
+
+}
+.width-his{
+    padding: 20px;
+    width: 100%;
+    border-width: 4px;
+}
+.open-main-history{
+    height: 480px;
+}
+.his-list{
+    margin: 30px 0 10px;
+    height: 85%;
+    padding: 0 20px;
+    overflow-y: scroll;
+
+        li{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        list-style: none;
+        border: 1px dotted #c0c0c0;
+        small, b, button{
+            display: block;
+            padding: 5px;
+        }
+        b{
+            text-align: center;
+        }
+        button{
+            @extend #his-display;
+            font-size: 1rem;
+            font-family: sans-serif;
+            font-weight: bold;
+            margin: 0;
+        }
+    }
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}
+.close-history{
+    @extend #his-display;
+    padding: 4px;
+    span{
+        display: block;
+        height: 2px;
+        width: 30px;
+    }
+    span:first-child{
+        rotate: 45deg;
+        translate: 0 50%;
+    }
+    span:last-child{
+        rotate: 135deg;
+        translate: 0 -50%;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    main{
+        max-width: 430px;
+        margin: 0 auto;
+    }
+.his-list{
+    li{
+        display: block;
+        button{
+            margin-left: auto;
+        }
+    }
+
+}
+
+
+}

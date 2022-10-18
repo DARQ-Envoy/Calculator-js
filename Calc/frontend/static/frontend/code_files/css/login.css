@@ -1,0 +1,131 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  position: relative;
+  height: 100vh;
+}
+
+.intro {
+  position: relative;
+  top: 50%;
+  translate: 0% -100%;
+  height: 66px;
+  width: 80%;
+  overflow: hidden;
+  margin: 40px auto 50px;
+  transition: top 2s ease, translate 1s ease;
+}
+
+.intro-add {
+  top: 0;
+  translate: 0% 0%;
+}
+
+.greeting, .instruct {
+  font-size: 3rem;
+  color: blue;
+  text-align: center;
+  padding: 10px;
+  font-weight: 500;
+  translate: 0 100%;
+  transition: translate 1s ease;
+}
+
+.start-g {
+  translate: 0 0%;
+}
+
+.end-g {
+  translate: 0 -100%;
+}
+
+.instruct {
+  font-size: 1.7rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.main-form, .signup-form {
+  border: none;
+  border-radius: 10px;
+  margin: 20px 20px;
+  height: 0px;
+  overflow: hidden;
+  transition: height 1s ease, padding 1s linear;
+}
+
+.main-form .msg, .signup-form .msg {
+  color: red;
+  font-size: 0.7rem;
+}
+
+.main-form input[type=text], .signup-form input[type=text] {
+  padding: 5px 5px 5px 12px;
+  border-radius: 10px;
+  border: 1px dotted blue;
+  font-size: 1.6rem;
+  display: block;
+  width: 90%;
+  margin: 10px 0;
+  color: blue;
+}
+
+.main-form input[type=text]::-webkit-input-placeholder, .signup-form input[type=text]::-webkit-input-placeholder {
+  color: blue;
+}
+
+.main-form input[type=text]:focus, .signup-form input[type=text]:focus {
+  outline: none;
+}
+
+.main-form input[type=submit], .signup-form input[type=submit] {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+  padding: 9px 25px;
+  display: block;
+  background-color: blue;
+  margin: 20px 0;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.main-form input[type=submit]:focus, .signup-form input[type=submit]:focus {
+  outline: 2px solid blue;
+}
+
+.show-form, .signup-form {
+  height: 178px;
+  padding: 20px 30px;
+  border: 2px dotted blue;
+}
+
+.signup-form {
+  margin-top: 100px;
+}
+
+.alt {
+  text-align: center;
+  color: gray;
+}
+
+.alt a {
+  color: blue;
+  text-decoration: none;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
