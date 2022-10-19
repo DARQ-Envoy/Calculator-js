@@ -3,16 +3,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth  import authenticate,login, logout
 from django.contrib import messages
 from django.urls import reverse
-
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required(login_url='login')
 def Calc(request):
-    print(request)
-    user_id = request.GET.get("user_id")
-    print(user_id)
-    user = User.objects.get(id=user_id)
-    print(user)
+    user = request.user
     context = {"username": user}
     return render(request, "frontend/index.html", context)
 
@@ -23,10 +20,15 @@ def sign_up(request):
     if request.method == "POST":
         username = request.POST.get("password")
         password = request.POST.get("password")
-        user = User.objects.create_user(username= username, password = password)
-        user.save()
-        print(user)
-        return redirect(reverse("calc"),f"?user_id={user.id}")
+        try:
+            user = User.objects.create_user(username= username, password = password)
+            user.save()
+            login(request, user)
+            return redirect(reverse("calc"))
+        except:
+            print("tim")
+            context["info"] = "This username already exists."
+    print(context)
     return render(request, "frontend/sign-up.html", context)
 
 
@@ -37,17 +39,19 @@ def user_login(request):
     if request.method == "POST" :
         username = request.POST.get("password")
         password = request.POST.get("password")
-        print(password)
         auth_user = authenticate(request,username = username, password = password)
-        print(auth_user)
+        context["shown"] = True
         if auth_user != None:
             login(request, auth_user)
-            print(auth_user.id)
-            return redirect(f"/frontend/calc?user_id={auth_user.id}")
+            return redirect("/frontend/calc")
         else:
             messages.info(request, "Your username is incorrect.")
             context["username"] = username
+            context["shown"] = True
             return render(request, "frontend/login.html", context)
     else:
         return render(request, "frontend/login.html", context)
         
+def user_logout(request):
+    logout(request)
+    return redirect(reverse("login"))

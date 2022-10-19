@@ -12,6 +12,9 @@
     <form action="" method="post" id="form" class="signup-form">
         {% csrf_token %}
         <p id="note" class="blue">Username <span class="red">Must</span> Include a number</p>
+        {% if info %}
+        <p class="blue">{{info}}</p>
+        {% endif %}
         <!-- <label for="username">Enter Username</label> -->
         <input type="text" name="password" placeholder="Enter username" id="username"/>
         <input type="submit" value="Submit">
@@ -49,7 +52,6 @@
           
         }
         function warn(){
-                userInput.style.color= "red";
                 note.style.color= "red";
         }
 </script>

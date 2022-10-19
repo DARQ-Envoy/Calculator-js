@@ -69,6 +69,16 @@
   color: #637097;
 }
 
+.theme-1 #clear-History, .theme-1 #logout {
+  border-color: white;
+  color: white;
+  background-color: #3a4764;
+}
+
+.theme-1 .report span {
+  color: #3a4764;
+}
+
 .theme-2 {
   background-color: black;
 }
@@ -136,6 +146,16 @@
   color: #377f86;
 }
 
+.theme-2 #clear-History, .theme-2 #logout {
+  border-color: #35352c;
+  color: #35352c;
+  background-color: #e6e6e6;
+}
+
+.theme-2 .report span {
+  color: #35352c;
+}
+
 .theme-3 {
   background-color: black;
 }
@@ -201,6 +221,16 @@
 
 .theme-3 .his-list li button {
   color: #9609d7;
+}
+
+.theme-3 #clear-History, .theme-3 #logout {
+  border-color: #ffe53d;
+  color: #ffe53d;
+  background-color: #160628;
+}
+
+.theme-3 .report span {
+  color: #ffe53d;
 }
 
 * {
@@ -350,7 +380,6 @@ main {
 
 #his-display, .his-list li button, .close-history {
   padding: 4px;
-  display: block;
   margin-left: auto;
   font-size: 1.4rem;
   font-weight: bolder;
@@ -359,6 +388,13 @@ main {
   outline: none;
   border: none;
   cursor: pointer;
+  float: right;
+}
+
+#user {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  display: inline-block;
 }
 
 .main-history {
@@ -372,7 +408,7 @@ main {
   height: 0px;
   overflow: hidden;
   border-width: 0px;
-  transition: height 2s linear, width 500ms ease, padding 500ms ease;
+  transition: height 1s linear, width 500ms ease, padding 500ms ease;
 }
 
 .width-his {
@@ -387,7 +423,7 @@ main {
 
 .his-list {
   margin: 30px 0 10px;
-  height: 85%;
+  height: 80%;
   padding: 0 20px;
   overflow-y: scroll;
 }
@@ -412,6 +448,7 @@ main {
 }
 
 .his-list li button {
+  float: none;
   font-size: 1rem;
   font-family: sans-serif;
   font-weight: bold;
@@ -442,6 +479,52 @@ main {
   translate: 0 -50%;
 }
 
+#clear-History, #logout {
+  padding: 7px 25px;
+  font-size: 1rem;
+  border: 2px solid;
+  outline: none;
+  border-radius: 10px;
+  margin: 15px 5px 5px;
+  font-weight: 600;
+  cursor: pointer;
+  float: right;
+}
+
+#logout {
+  float: left;
+  text-decoration: none;
+}
+
+.report {
+  width: 80%;
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 20px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  translate: -50% 0%;
+}
+
+.report img {
+  height: 30px;
+  width: 30px;
+  display: block;
+  margin: 10px auto;
+}
+
+.report span {
+  display: block;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
 @media screen and (min-width: 600px) {
   main {
     max-width: 430px;
@@ -449,6 +532,10 @@ main {
   }
   .his-list li {
     display: block;
+    padding: 15px;
+  }
+  .his-list li small {
+    margin-right: auto;
   }
   .his-list li button {
     margin-left: auto;

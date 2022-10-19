@@ -19,29 +19,47 @@ function checkValue(event){
         }
     }
 }
+const allTransElements = [intro, greeting, instruct, userForm];
+allTransElements.forEach((element, index)=>{
+    element.style.transition = "none"
+})
 
-let timeG = setTimeout(()=>{
-        greeting.classList.add("start-g");
-        instruct.classList.add("start-g");
-        setTimeout(()=>{
-            greeting.classList.remove("start-g");
-            instruct.classList.remove("start-g");
+function setElements(){
             greeting.classList.add("end-g");
             instruct.classList.add("end-g");
-    setTimeout( ()=>{
-                    intro.classList.add("intro-add");
-        setTimeout(()=>{
-                          userForm.classList.remove("hidden");  
-            setTimeout(()=>{
-                        userForm.classList.add("show-form");
-                setTimeout(()=>{
-                        alt.classList.remove("hidden");
-                        }, 1500)
-                    },500)
-                }, 2000)
-            }, 1000)
-        }, 2000)
-}, 1000);
+            intro.classList.add("intro-add");
+            userForm.classList.remove("hidden");  
+            userForm.classList.add("show-form");
+            alt.classList.remove("hidden");
+}
+setElements()
+
+
+
+// First animation
+
+// let timeG = setTimeout(()=>{
+//         greeting.classList.add("start-g");
+//         instruct.classList.add("start-g");
+//         setTimeout(()=>{
+//             greeting.classList.remove("start-g");
+//             instruct.classList.remove("start-g");
+//             greeting.classList.add("end-g");
+//             instruct.classList.add("end-g");
+//     setTimeout( ()=>{
+//                     intro.classList.add("intro-add");
+//         setTimeout(()=>{
+//                           userForm.classList.remove("hidden");  
+//             setTimeout(()=>{
+//                         userForm.classList.add("show-form");
+//                 setTimeout(()=>{
+//                         alt.classList.remove("hidden");
+//                         }, 1500)
+//                     },500)
+//                 }, 2000)
+//             }, 1000)
+//         }, 2000)
+// }, 1000);
 
 
 

@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" href="{% static 'frontend/code_files/css/login.css' %}">
+    {% if shown %}
     <script src="{% static 'frontend/code_files/js/login.js' %}" defer></script>
+    {% else %}
+    <script src="{% static 'frontend/code_files/js/login-animation.js' %}" defer></script>
+    {% endif %}
     <title>Login to continue</title>
     <style>
 

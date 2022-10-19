@@ -9,10 +9,13 @@ const mainHistory =  document.querySelector("#his-main");
 const showHistory =  document.querySelector("#his-display");
 const closeHistory =  document.querySelector(".close-history");
 const historyList =  document.querySelector(".his-list");
-const allEditButtons = historyList.querySelectorAll("button");
-const allEBtnArr = Array.from(allEditButtons);
+let allEditButtons = historyList.querySelectorAll("button");
 const user = document.querySelector("#user")
 const clearHistory = document.querySelector("#clear-History")
+const report = document.querySelector(".report")
+const reportText = document.querySelector(".done")
+const logout = document.querySelector("#logout")
+// let username = user.textContent;
 let answer = false;
 let numbers = Array();
 let operators = "";
@@ -24,8 +27,8 @@ let userEquation;
 
 // History
 let userHistory;
-let username = user.textContent;
-
+const username = user.textContent;
+let notClicked = true;
 
 
 // Calculator
@@ -44,6 +47,7 @@ for(let button of allBtns){
     };
     button.addEventListener("click", ()=>{
         func(button);
+        notClicked = true;
         // if(button === resultBtn){
         //     console.log({button})
         //     postEquation(button)
@@ -218,15 +222,21 @@ let indices = -1;
         equation = numbers.join("");
         userEquation = equation;
         result = Function(`${equation}; return ${equation}`)();
-        if(result == Infinity){
+        if(result == Infinity || Number.isNaN(result) ){
             result = 'Invalid Equation';
         }
         userInput = String(result);
         answer = false;
-        postEquRequest()
+        if(notClicked){
+            postEquRequest()
+        }
     }
-
-    renderEquation(userInput)
+    if(userInput != 'Invalid Equation'){
+        renderEquation(userInput)
+    }
+    else{
+        display.value = userInput
+    }
  }
  
 document.body.classList.add(`theme-${rangeEl.value}`)
@@ -239,6 +249,9 @@ document.body.classList.add(`theme-${rangeEl.value}`)
 // History
 showHistory.addEventListener("click",(e)=>{
     cHistory(e.target, "add")
+    //To show users if they have any history of not but make no changes whatsoever
+    displayHistory()
+    // 
     })
     closeHistory.addEventListener("click",(e)=>{
         cHistory(e.target, "remove")
@@ -250,14 +263,18 @@ showHistory.addEventListener("click",(e)=>{
         else{
         mainHistory.classList.remove("open-main-history")
             setTimeout(()=>{
-        mainHistory.classList.remove("width-his")}, 2000)
+        mainHistory.classList.remove("width-his")}, 1000)
         }
     }
-allEBtnArr.forEach((btn, index)=>{
-    btn.addEventListener("click",()=>{
-            editEquation(btn, index)
-            })
-})
+   function setButtons(){
+    allEditButtons.forEach((btn, index)=>{
+        btn.addEventListener("click",()=>{
+                notClicked = false; 
+                editEquation(btn, index)
+                })
+    })
+   }
+
 
 
 function editEquation(element, index){
@@ -273,30 +290,65 @@ function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         const cookies = document.cookie.split(';');
-        // console.log(cookies)
         for (let i = 0; i < cookies.length; i++) {
             const cookie = cookies[i].trim();
-            // console.log(cookie);
             // Does this cookie string begin with the name we want?
             if (cookie.substring(0, name.length + 1) === (name + '=')) {
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                console.log(cookieValue)
                 break;
             }
         }
     }
     return cookieValue;
 }
+
+
+
+// function postEquRequest(){
+//         let ajaxPost = new XMLHttpRequest();
+//         let username = user.textContent
+//         // let jsonData = JSON.stringify({equation:userEquation})
+//         let equValue = userEquation.replaceAll("+","p")
+//         let csrftoken = getCookie("csrftoken")
+//         ajaxPost.open("POST","http://127.0.0.1:8000/backend/save_equation/");
+//         ajaxPost.setRequestHeader("X-CSRFToken",csrftoken);
+//         ajaxPost.setRequestHeader("Content-Type","application/json")
+//         ajaxPost.onload = function(){
+//             if(this.status === 200){
+//                 let response = this.responseText
+//                 console.log(response)
+//                 // let data = JSON.parse(response)
+//                 userHistory = data;
+//                 displayHistory()
+//             }
+//             else{
+//                 console.log(this.status)
+//                 console.log(this.responseText)
+//                 document.querySelector("footer").innerHTML = this.responseText;
+//             }
+//         }
+//         ajaxPost.onerror = function(){
+//             console.log("tim")
+//             console.log(this.readyState)
+//         }
+//         // ajaxPost.send(`${jsonData}`);
+//         // ajaxPost.send(`equation=${equValue}&username=${username}`);
+//         let data = JSON.stringify({"equation":equValue,"username":username})
+//         ajaxPost.send(data);
+//     }
+    
+
+
+// Reserve Code
+
+
 function postEquRequest(){
     let ajaxPost = new XMLHttpRequest();
-    let username = user.textContent
-    // let jsonData = JSON.stringify({equation:userEquation})
     let equValue = userEquation.replaceAll("+","p")
     let csrftoken = getCookie("csrftoken")
     ajaxPost.open("POST","http://127.0.0.1:8000/backend/save_equation/");
     ajaxPost.setRequestHeader("X-CSRFToken",csrftoken);
     ajaxPost.setRequestHeader("content-type","application/x-www-form-urlencoded")
-    // ajaxPost.setRequestHeader("content-type","application/json")
     ajaxPost.onload = function(){
         if(this.status === 200){
             let response = this.responseText
@@ -312,46 +364,78 @@ function postEquRequest(){
         console.log(this.readyState)
     }
     // ajaxPost.send(`${jsonData}`);
-    ajaxPost.send(`equation=${equValue}&username=${username}`);
+    ajaxPost.send(`equation=${equValue}`);
 }
 
 
-function getEqu(){
-    let username = user.textContent;
-    fetch(`http://127.0.0.1:8000/backend/save_equation/?username=${username}`)  
+
+
+function historyPro(e,url){
+    fetch(url)  
     .catch(err=>{console.log(err)})
     .then(res =>res.json())
     .then(js =>{
         userHistory = js;
+        if(e){
+            displayHistory(e.target)
+        }
+        else{
         displayHistory()
+        }
     })
 
 }
-getEqu()
+// get initail data
+historyPro(null, `http://127.0.0.1:8000/backend/save_equation/`)
+
 // Display History
 
-function displayHistory(){
+function displayHistory(element){
+    const allHisKeys = Array()
     historyList.innerHTML = ``
-    let index = -1
     for(let equation in userHistory){
-        index++
-        let date = userHistory[equation]["date-created"]
-        let equ = userHistory[equation]["equation"]
-        let li = document.createElement("li");
+        allHisKeys.push(equation);
+    };
+    allHisKeys.forEach((key, index)=>{
+        let value = index+1;
+        let  element = allHisKeys[allHisKeys.length-value];
+        let date = userHistory[element]["date-created"]
+        let equ = userHistory[element]["equation"]
+        let li = document.createElement("li")
         li.innerHTML=   `
         <small>${date}</small>
         <b id='equ-${index}'>${equ}</b>
         <button>Get Result</button>
-              `
-        historyList.appendChild(li)
+              `;
+        historyList.appendChild(li);
+    });
+    if(historyList.innerHTML === "" && element != clearHistory){
+
+        giveReport(false, "You have no history")
     }
+    else if(historyList.innerHTML === "" && element === clearHistory && report.classList.contains("hidden")){
+        giveReport(false)
+    }
+    else if(historyList.innerHTML){
+        giveReport(true)
+    }
+allEditButtons = historyList.querySelectorAll("button");
+setButtons()
 }
 
 // Clear History
-clearHistory.addEventListener("click",clearHis);
-function clearHis(){
-    fetch(`http://127.0.0.1:8000/backend/save_equation/?username=${username}&instruction=clear`)
-    .then(res=>res.text)
-    .then(data=>{console.log(data)})
+clearHistory.addEventListener("click",(e)=>{historyPro(e, `http://127.0.0.1:8000/backend/save_equation/?instruction=clear`)} );
+
+
+
+// Report 
+function giveReport(hide, text = "Done"){
+    if(hide){
+        report.classList.add("hidden")
+    } 
+    else if(!hide){
+        report.classList.remove("hidden")
+    } 
+    reportText.textContent = text
 }
 

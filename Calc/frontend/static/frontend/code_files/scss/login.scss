@@ -50,7 +50,7 @@ body{
 .main-form{
     border: none;
     border-radius: 10px;
-    margin: 20px 20px;
+    margin: 20px auto;
     height: 0px;
     overflow: hidden;
     transition: height 1s ease, padding 1s linear;
@@ -92,9 +92,11 @@ body{
 }
 .show-form{
     // display: block;
-    height: 178px;
+    height: fit-content;
     padding: 20px 30px;
     border: 2px dotted blue;
+    width: 50%;
+
 }
 .signup-form{
  @extend .main-form;
@@ -115,4 +117,19 @@ body{
 }
 .blue{
     color: blue;
+}
+@media screen and (max-width: 700px) {
+    .show-form{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 500px) {
+    .main-form {
+        input[type=text]{
+            width: 98%;
+        }
+    }
+    .show-form{
+        width: 95%;
+    }
 }
