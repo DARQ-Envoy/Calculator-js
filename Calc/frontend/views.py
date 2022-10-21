@@ -27,8 +27,7 @@ def sign_up(request):
             return redirect(reverse("calc"))
         except:
             print("tim")
-            context["info"] = "This username already exists."
-    print(context)
+            context["info"] = "Let's try another combination."
     return render(request, "frontend/sign-up.html", context)
 
 
@@ -43,7 +42,7 @@ def user_login(request):
         context["shown"] = True
         if auth_user != None:
             login(request, auth_user)
-            return redirect("/frontend/calc")
+            return redirect(reverse("calc"))
         else:
             messages.info(request, "Your username is incorrect.")
             context["username"] = username

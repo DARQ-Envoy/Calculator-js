@@ -302,76 +302,45 @@ function getCookie(name) {
     return cookieValue;
 }
 
-
-
-// function postEquRequest(){
-//         let ajaxPost = new XMLHttpRequest();
-//         let username = user.textContent
-//         // let jsonData = JSON.stringify({equation:userEquation})
-//         let equValue = userEquation.replaceAll("+","p")
-//         let csrftoken = getCookie("csrftoken")
-//         ajaxPost.open("POST","http://127.0.0.1:8000/backend/save_equation/");
-//         ajaxPost.setRequestHeader("X-CSRFToken",csrftoken);
-//         ajaxPost.setRequestHeader("Content-Type","application/json")
-//         ajaxPost.onload = function(){
-//             if(this.status === 200){
-//                 let response = this.responseText
-//                 console.log(response)
-//                 // let data = JSON.parse(response)
-//                 userHistory = data;
-//                 displayHistory()
-//             }
-//             else{
-//                 console.log(this.status)
-//                 console.log(this.responseText)
-//                 document.querySelector("footer").innerHTML = this.responseText;
-//             }
-//         }
-//         ajaxPost.onerror = function(){
-//             console.log("tim")
-//             console.log(this.readyState)
-//         }
-//         // ajaxPost.send(`${jsonData}`);
-//         // ajaxPost.send(`equation=${equValue}&username=${username}`);
-//         let data = JSON.stringify({"equation":equValue,"username":username})
-//         ajaxPost.send(data);
-//     }
-    
-
-
-// Reserve Code
-
-
 function postEquRequest(){
-    let ajaxPost = new XMLHttpRequest();
-    let equValue = userEquation.replaceAll("+","p")
-    let csrftoken = getCookie("csrftoken")
-    ajaxPost.open("POST","http://127.0.0.1:8000/backend/save_equation/");
-    ajaxPost.setRequestHeader("X-CSRFToken",csrftoken);
-    ajaxPost.setRequestHeader("content-type","application/x-www-form-urlencoded")
-    ajaxPost.onload = function(){
-        if(this.status === 200){
-            let response = this.responseText
-            let data = JSON.parse(response)
+        let equValue = userEquation.replaceAll("+","p");
+        equValue = equValue.replaceAll("*","x");
+        let csrftoken = getCookie("csrftoken")
+    fetch("http://127.0.0.1:8000/backend/save_equation/", {
+                method:"POST",
+                credentials:"same-origin",
+                headers:{
+                    'X-CSRFToken': csrftoken,
+                    'Accept':'application/json',
+                    'X-Requested-With':'XMLHttpRequest',
+                    'content-type':"application/json"
+                },
+                body:JSON.stringify({equation:equValue})
+                            })
+        .then((response)=>{
+            if(response.ok){
+                return response.json()
+            }
+            else{
+                console.log(response.statusText)
+            }
+            })
+        .then(data=>{
             userHistory = data;
             displayHistory()
-        }
-        else{
-            console.log(this.status)
-        }
-    }
-    ajaxPost.onerror = function(){
-        console.log(this.readyState)
-    }
-    // ajaxPost.send(`${jsonData}`);
-    ajaxPost.send(`equation=${equValue}`);
-}
+        })
 
-
+    }
 
 
 function historyPro(e,url){
-    fetch(url)  
+    fetch(url,{
+        headers:{
+            "X-Requested-With":"XMLHttpRequest",
+            "Accept":'application/json'
+                }
+
+    })  
     .catch(err=>{console.log(err)})
     .then(res =>res.json())
     .then(js =>{
